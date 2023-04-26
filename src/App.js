@@ -1,7 +1,22 @@
-import './App.css';
+import { useState } from 'react';
 import logo from './logo1.svg'
+import { HiEyeOff } from "react-icons/hi";
 
 function App() {
+  const [passwordType, setPasswordType] = useState('password');
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+    if (showPassword) {
+      setPasswordType('password');
+    } else {
+      setPasswordType('text');
+    }
+  }
+
+
+
   return (
     <div className="App">
       <div className='flex bg-amber-400 overflow-hidden'>
@@ -19,7 +34,9 @@ function App() {
 
             <form className='flex flex-col p-4'>
               <input className='outline-0 border-0 text-lg  rounded-md p-4 mb-4' type='text' placeholder='Enter your Name' />
-              <input className='outline-0 border-0 tex-lg   rounded-md p-4' type='password' placeholder='Enter your password' />
+              <input className='outline-0 border-0 text-lg p-4' type={passwordType} placeholder='Enter your password' />
+              <HiEyeOff className='absolute right-8 bottom-32 text-2xl text-slate-950/40 bg-stone-100 ' onClick={handleShowPassword} />
+
               <button className='bg-teal-800 text-xl text-white rounded-md p-4 mt-8'>Login</button>
             </form>
           </div>
